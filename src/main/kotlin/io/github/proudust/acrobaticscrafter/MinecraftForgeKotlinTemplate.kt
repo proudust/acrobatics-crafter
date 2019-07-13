@@ -1,4 +1,4 @@
-package io.github.proudust.minecraftforgekotlintemplate
+package io.github.proudust.acrobaticscrafter
 
 import net.minecraft.block.Block
 import net.minecraft.item.Item
@@ -10,16 +10,16 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 @Mod(
-        modid = MinecraftForgeKotlinTemplate.MOD_ID,
-        name = MinecraftForgeKotlinTemplate.MOD_NAME,
-        version = MinecraftForgeKotlinTemplate.VERSION,
+        modid = AcrobaticsCrafter.MOD_ID,
+        name = AcrobaticsCrafter.MOD_NAME,
+        version = AcrobaticsCrafter.VERSION,
         modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
-object MinecraftForgeKotlinTemplate {
-    const val MOD_ID = "minecraft-forge-kotlin-template"
-    const val MOD_NAME = "Minecraft Forge Kotlin Template"
+object AcrobaticsCrafter {
+    const val MOD_ID = "acrobatics-crafter"
+    const val MOD_NAME = "Acrobatics Crafter"
     const val VERSION = "2019.1-1.2.23"
-
+    
     /**
      * This is the first initialization event. Register tile entities here.
      * The registry events below will have fired prior to entry to this method.
