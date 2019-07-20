@@ -113,10 +113,17 @@ object PlayerStun {
     }
 
     @SideOnly(Side.CLIENT)
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent(priority = EventPriority.LOW)
     @JvmStatic
     fun fallStun(event: LivingFallEvent) {
-        if (event.entityLiving is EntityPlayerSP && event.distance * event.damageMultiplier >= 3.0F) stun(30)
+        if (event.entityLiving is EntityPlayerSP && event.distance * event.damageMultiplier >= 3.0F) {
+            stun(30)
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @JvmStatic
+    fun disableFallDamage(event: LivingFallEvent) {
         if (event.entityLiving is EntityPlayer) event.damageMultiplier = 0.0F
     }
 }
