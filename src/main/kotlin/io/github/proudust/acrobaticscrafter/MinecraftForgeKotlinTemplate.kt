@@ -4,7 +4,9 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.entity.EntityPlayerSP
 import net.minecraft.client.settings.KeyBinding
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.util.math.MathHelper
 import net.minecraftforge.client.event.MouseEvent
+import net.minecraftforge.event.entity.living.LivingEvent
 import net.minecraftforge.event.entity.living.LivingFallEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.EventPriority
@@ -29,7 +31,6 @@ object AcrobaticsCrafter {
 @Mod.EventBusSubscriber
 object PlayerMidairJump {
     private val gameSetting = Minecraft.getMinecraft().gameSettings
-
     private var isDoubleJumped = false
 
     @SideOnly(Side.CLIENT)
@@ -50,6 +51,37 @@ object PlayerMidairJump {
     @JvmStatic
     fun resetFlag(event: LivingFallEvent) {
         if (event.entityLiving is EntityPlayerSP) isDoubleJumped = false
+    }
+}
+
+@Mod.EventBusSubscriber
+object PlayerBulletJump {
+    private val gameSetting = Minecraft.getMinecraft().gameSettings
+    private var isBulletJumped = false
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    @JvmStatic
+    fun replaceJumpToBulletJump(event: LivingEvent.LivingJumpEvent) {
+        if (event.entityLiving !is EntityPlayerSP) return
+        if (gameSetting.keyBindSneak.isPressed && gameSetting.keyBindSneak.isKeyDown) {
+            val player = event.entityLiving as EntityPlayerSP
+            val pitch = ((if (player.onGround && player.rotationPitch > 0) 0.0f else player.rotationPitch) - 10.0f) * 0.017453292f
+            val yaw = player.rotationYaw * 0.017453292f
+            val power = if (player.onGround) 1.05f else 0.63f
+            player.motionX = -(MathHelper.sin(yaw) * MathHelper.cos(pitch) * power).toDouble()
+            player.motionY = -(MathHelper.sin(pitch) * power).toDouble()
+            player.motionZ = (MathHelper.cos(yaw) * MathHelper.cos(pitch) * power).toDouble()
+            isBulletJumped = true
+            KeyBinding.setKeyBindState(gameSetting.keyBindSneak.keyCode, false)
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    @JvmStatic
+    fun resetFlag(event: LivingFallEvent) {
+        if (event.entityLiving is EntityPlayerSP) isBulletJumped = false
     }
 }
 
@@ -84,7 +116,7 @@ object PlayerStun {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     @JvmStatic
     fun fallStun(event: LivingFallEvent) {
-        if (event.entityLiving is EntityPlayerSP && event.distance * event.damageMultiplier >= 3.0F) stun(20)
+        if (event.entityLiving is EntityPlayerSP && event.distance * event.damageMultiplier >= 3.0F) stun(30)
         if (event.entityLiving is EntityPlayer) event.damageMultiplier = 0.0F
     }
 }
