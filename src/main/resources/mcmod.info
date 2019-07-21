@@ -1,16 +1,17 @@
 [
   {
-    "modid": "minecraft-forge-kotlin-template",
-    "name": "Minecraft Forge Kotlin Template",
-    "description": "injection point type '%s'",
+    "modid": "acrobatics-crafter",
+    "name": "Acrobatics Crafter",
+    "description": "",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "",
+    "url": "https://github.com/proudust/acrobatics-crafter",
     "updateUrl": "",
-    "authorList": [],
-    "credits": "",
-    "logoFile": "",
-    "screenshots": [],
-    "dependencies": []
+    "authorList": [
+      "Proudust"
+    ],
+    "requiredMods": [
+      "forgelin"
+    ]
   }
 ]
