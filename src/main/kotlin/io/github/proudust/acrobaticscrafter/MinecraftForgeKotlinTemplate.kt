@@ -25,7 +25,7 @@ import kotlin.math.max
 object AcrobaticsCrafter {
     const val MOD_ID = "acrobatics-crafter"
     const val MOD_NAME = "Acrobatics Crafter"
-    const val VERSION = "2019.1-1.2.23"
+    const val VERSION = "0.1.0"
 }
 
 @Mod.EventBusSubscriber
