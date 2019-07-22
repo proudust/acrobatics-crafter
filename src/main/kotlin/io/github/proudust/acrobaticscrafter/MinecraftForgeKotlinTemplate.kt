@@ -3,6 +3,7 @@ package io.github.proudust.acrobaticscrafter
 import net.minecraft.client.Minecraft
 import net.minecraft.client.entity.EntityPlayerSP
 import net.minecraft.client.settings.KeyBinding
+import net.minecraft.entity.SharedMonsterAttributes
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.math.MathHelper
 import net.minecraftforge.client.event.MouseEvent
@@ -26,6 +27,24 @@ object AcrobaticsCrafter {
     const val MOD_ID = "acrobatics-crafter"
     const val MOD_NAME = "Acrobatics Crafter"
     const val VERSION = "0.1.0"
+}
+
+@Mod.EventBusSubscriber
+object PlayerBaseSpeedReplace {
+    private const val walkSpeed = 0.135
+    private const val dashSpeed = 0.1275
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    @JvmStatic
+    fun speed(event: TickEvent.PlayerTickEvent) {
+        val player = event.player
+        val moveSpeedAttr = player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED)
+        moveSpeedAttr.baseValue = when {
+            player.isSprinting -> dashSpeed
+            else -> walkSpeed
+        }
+    }
 }
 
 @Mod.EventBusSubscriber
