@@ -18,10 +18,10 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
 @Mod(
-        modid = AcrobaticsCrafter.MOD_ID,
-        name = AcrobaticsCrafter.MOD_NAME,
-        version = AcrobaticsCrafter.VERSION,
-        modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
+    modid = AcrobaticsCrafter.MOD_ID,
+    name = AcrobaticsCrafter.MOD_NAME,
+    version = AcrobaticsCrafter.VERSION,
+    modLanguageAdapter = "net.shadowfacts.forgelin.KotlinAdapter"
 )
 object AcrobaticsCrafter {
     const val MOD_ID = "acrobatics-crafter"
@@ -58,8 +58,8 @@ object PlayerMidairJump {
     fun midairJump(event: TickEvent.PlayerTickEvent) {
         val player = event.player
         if (gameSetting.keyBindJump.isPressed && gameSetting.keyBindJump.isKeyDown
-                && !player.collidedVertically && !isDoubleJumped
-                && !player.isInWater && !player.isInLava) {
+            && !player.collidedVertically && !isDoubleJumped
+            && !player.isInWater && !player.isInLava) {
             player.jump()
             isDoubleJumped = true
         }

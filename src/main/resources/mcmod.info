@@ -1,17 +1,17 @@
 [
-  {
-    "modid": "acrobatics-crafter",
-    "name": "Acrobatics Crafter",
-    "description": "",
-    "version": "${version}",
-    "mcversion": "${mcversion}",
-    "url": "https://github.com/proudust/acrobatics-crafter",
-    "updateUrl": "",
-    "authorList": [
-      "Proudust"
-    ],
-    "requiredMods": [
-      "forgelin"
-    ]
-  }
+    {
+        "modid": "acrobatics-crafter",
+        "name": "Acrobatics Crafter",
+        "description": "",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "https://github.com/proudust/acrobatics-crafter",
+        "updateUrl": "",
+        "authorList": [
+            "Proudust"
+        ],
+        "requiredMods": [
+            "forgelin"
+        ]
+    }
 ]
